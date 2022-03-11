@@ -1,14 +1,15 @@
 <template>
   <div>
     <!-- <Fio lastName="Бессонов" firstName="Иван" middleName="Анатольевич"/>
-    <Vyatsu :results="results"/> -->  
+    <Vyatsu :results="results"/>  
     <div class="buttons">
       <button v-on:click="toggleStyleLogin" class="login-btn">Войти</button>
       <button v-on:click="toggleStyleRegister" class="register-btn">Зарегестрироваться</button>
     </div> 
-    <Login class="login"/>
-    <Verification class="email" :fn="toggleStyleEmail"/>
+    <Login class="login"/> -->
+    <Verification class="email"/>
     <Registration class="register"/>
+    <Successfully class ="successfully"/>
     <!-- <MyHeader/> -->
   </div>
 </template>
@@ -21,6 +22,7 @@ import Login from '../../login/src/components/login.vue';
 import MyHeader from '../../header/src/components/Myheader.vue';
 import Registration from '../../registration/src/components/registration.vue';
 import Verification from '../../verification_email/src/components/verification_email.vue';
+import Successfully from '../../successfully/src/components/successfully.vue'
 
 
 const url = 'http://localhost:8080/admission/';
@@ -37,6 +39,7 @@ export default  Vue.extend({
     Registration,
     Verification,
     MyHeader,
+    Successfully,
   },
   mounted() {
     axios
@@ -76,6 +79,9 @@ width: 100%;
 }
 .register {
 display: none;
+}
+.successfully{
+  display: none;
 }
 .buttons {
 display: flex;

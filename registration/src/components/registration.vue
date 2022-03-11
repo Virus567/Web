@@ -8,6 +8,10 @@
     <h1 class="title">Регистрация</h1>
     <div class="input_desctop">
       <div class="input-block">
+        <p>Email</p>
+        <input type="text" readonly class="reg_email">
+      </div>
+      <div class="input-block">
         <p>Логин</p>
         <input type="text">
       </div>
@@ -21,12 +25,13 @@
       </div>
     </div>
     <div class="input-mobil">
+      <input type="text" placeholder="Email" readonly class="reg_email">
       <input type="text" placeholder="Логин">
       <input type="password" placeholder="Пароль">
       <input type="password" placeholder="Повторите пароль">
     </div>
     <div>
-      <button type="button" class="Enter-btn">Зарегестрироваться</button>
+      <button type="button" class="Enter-btn" v-on:click="EndReg">Зарегестрироваться</button>
     </div>
   </div>
 </div>
@@ -34,6 +39,16 @@
 
 <script lang="ts">
 export default {
+  methods: {
+    EndReg() {
+      const emailBlock :HTMLDivElement = document.querySelector('.email');
+      const successfullyBlock :HTMLDivElement = document.querySelector('.successfully');
+      const registrationBlock :HTMLDivElement = document.querySelector('.register');
+      emailBlock.style.display = 'none';
+      registrationBlock.style.display = 'none';
+      successfullyBlock.style.display = 'flex';
+    },
+  },
 };
 </script>
 <style scoped>

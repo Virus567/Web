@@ -4,19 +4,19 @@
     <img src="../assets/reg.png" alt="logo" class="biglogo-img">
     <img src="../assets/slogo.png" alt="logo" class="logo-img">
   </div>
-  <div class="registration_block">
+  <div class="email_block">
     <h1 class="title">Регистрация</h1>
     <div class="input_desctop">
       <div class="input-block">
         <p>Email</p>
-        <input type="text">
+        <input type="text" class="email_input">
       </div>
     </div>
     <div class="input-mobil">
-      <input type="text" placeholder="Email">
+      <input type="text" class ="email_input" placeholder="Email">
     </div>
     <div>
-      <button type="button" class="Enter-btn" v-on:click="fn">Далее</button>
+      <button type="button" class="Enter-btn" v-on:click="SwapReg">Далее</button>
     </div>
   </div>
 </div>
@@ -24,12 +24,17 @@
 
 <script lang="ts">
 export default {
-  components: {
-  },
-  props: {
-    fn: function(){}
-  },
-
+   methods: {
+      SwapReg() {
+            const emailBlock :HTMLDivElement = document.querySelector('.email');
+            const registrationBlock :HTMLDivElement = document.querySelector('.register');
+            emailBlock.style.display = 'none';
+            registrationBlock.style.display = 'flex';
+            const enterEmail = (document.querySelector('.email_input') as HTMLInputElement).value;
+            const regEmail :HTMLInputElement = document.querySelector('.reg_email');
+          regEmail.value = enterEmail;
+      }
+   }
 };
 </script>
 <style scoped>

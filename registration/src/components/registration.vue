@@ -6,35 +6,54 @@
   </div>
   <div class="registration_block">
     <h1 class="title">Регистрация</h1>
-    <div class="input_desctop">
+    <div>
       <div class="input-block">
         <p>Логин</p>
-        <input type="text">
+        <input type="text" id="reg_login" placeholder="Логин">
       </div>
       <div class="input-block">
         <p>Пароль</p>
-        <input type="password">
+        <input type="password" id="reg_password"  placeholder="Пароль">
       </div>
       <div class="input-block">
         <p>Повторите пароль</p>
-        <input type="password">
+        <input type="password" placeholder="Повторите пароль">
       </div>
     </div>
-    <div class="input-mobil">
-      <input type="text" placeholder="Логин">
-      <input type="password" placeholder="Пароль">
-      <input type="password" placeholder="Повторите пароль">
-    </div>
     <div>
-      <button type="button" class="Enter-btn">Зарегестрироваться</button>
+      <button type="button" class="Enter-btn" v-on:click="IsValidLogin">Зарегестрироваться</button>
     </div>
   </div>
 </div>
 </template>
 
 <script lang="ts">
+import axios from 'axios';
 export default {
-};
+  methods:{
+    IsValidLogin(){
+      const login :HTMLInputElement = document.getElementById('reg_login') as HTMLInputElement;
+      const password :HTMLInputElement = document.getElementById('reg_password') as HTMLInputElement;
+      const config = {
+      url: 'https://c09d3d8f-ad12-4bba-bc83-d39555f2e942.mock.pstmn.io/auth/check',
+      };
+      const data = {
+      login: login.value,
+      password: password.value,
+      };
+      axios.get(config.url+'?'+data.login+'&'+data.password)
+      .then((response) => {
+      console.log(response.data.isValid);
+      if (response.data.isValid) {
+        alert('Такой логин уже есть');
+      }else  alert('Логин свободен');
+      })
+      .catch((error) => {
+      console.log(error);
+      });
+    }
+  }  
+}
 </script>
 <style scoped>
   .container{
@@ -95,6 +114,9 @@ export default {
     text-decoration: none;
     padding: 2px 1px;
     }
+  .input-block input::placeholder{
+    color: white;
+  }
   @media (max-width:600px){
     .container{
       display: block;
@@ -120,6 +142,12 @@ export default {
     font-size: 20px;
     text-decoration: none;
     padding: 2px 1px;
+    }
+     .input-block input::placeholder{
+      color: grey;
+    }
+    .input-block p{
+      display: none;
     }
   }
     @media (max-width:260px){

@@ -5,7 +5,7 @@
     <div class="buttons">
       <button v-on:click="toggleStyleLogin" class="login-btn">Войти</button>
       <button v-on:click="toggleStyleRegister" class="register-btn">Зарегестрироваться</button>
-    </div>    
+    </div>
     <Login class="login"/>
     <Registration class="register"/>
   </div>
@@ -16,11 +16,11 @@ import axios from 'axios';
 import Fio from '../../fio/src/components/Fio.vue';
 import Vyatsu from '../../vyatsu/src/components/Vyatsu.vue';
 import Login from '../../login/src/components/login.vue';
-import Registration from '../../registration/src/components/registration.vue'
+import Registration from '../../registration/src/components/registration.vue';
 
 const url = 'http://localhost:8080/admission/';
 
-export default  Vue.extend({
+export default Vue.extend({
   name: 'App',
   props: {
     results: [],
@@ -101,4 +101,3 @@ color: white;
 }
 }
 </style>
-

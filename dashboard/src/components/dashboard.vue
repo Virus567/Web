@@ -57,28 +57,28 @@
         <div class="btns">
           <button class="info-btn">
             <img src="../assets/total-visits.svg" alt="visits">
-            <div class="info">
+            <div>
               <p>Total Visits</p>
               <p>10.8m</p>
             </div>
           </button>
           <button class="info-btn">
             <img src="../assets/tatal-sales.svg" alt="sales">
-            <div class="info">
+            <div>
               <p>Total Sales</p>
               <p>100,345</p>
             </div>
           </button>
           <button class="info-btn">
             <img src="../assets/total-made.svg" alt="made">
-            <div class="info">
+            <div>
               <p>Total Made</p>
               <p>$200k</p>
             </div>
           </button>
-          <button class="info-btn-last">
+          <button class="info-btn">
             <img src="../assets/orders-completed.svg" alt="orders">
-            <div class="info">
+            <div>
               <p style="font-size:10px">Orders Completed</p>
               <p>98,771</p>
             </div>
@@ -246,16 +246,10 @@ export default {
     display:flex;
     justify-content: space-between;
   }
-  .name{
-    display: block;
-  }
   .statistic{
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
-  }
-  .diagram{
-    display: block;
   }
   .btns{
     display: grid;
@@ -266,12 +260,6 @@ export default {
 
   }
   .info-btn{
-    display: flex;
-    border: none;
-    padding: 15px 8px;
-    border-radius: 16px;
-  }
-  .info-btn-last{
     display: flex;
     border: none;
     padding: 15px 8px;
@@ -296,9 +284,6 @@ export default {
     color:#7B7878;
     font-size:13px;
     margin:0 0 0 3px;
-  }
-  .info{
-    display: block;
   }
   .info-t{
     display: block;
@@ -333,9 +318,6 @@ export default {
     display: grid;
     grid-template-columns: repeat(4, 25%);
     width: 61%;
-  }
-  .list-gender{
-    display: block;
   }
   .list-element{
     margin-top:34px;

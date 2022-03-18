@@ -5,7 +5,7 @@
     <div class="buttons">
       <button v-on:click="toggleStyleLogin" class="login-btn">Войти</button>
       <button v-on:click="toggleStyleRegister" class="register-btn">Зарегестрироваться</button>
-    </div>    
+    </div>
     <Login class="login"/>
     <Registration class="register"/> -->
     <SideBar class="sidebar"/>
@@ -13,7 +13,6 @@
       <MyHeader/>
       <Dashboard/>
     </div>
-    
   </div>
 </template>
 <script lang='ts'>
@@ -23,23 +22,22 @@ import Fio from '../../fio/src/components/Fio.vue';
 import Vyatsu from '../../vyatsu/src/components/Vyatsu.vue';
 import Login from '../../login/src/components/login.vue';
 import Registration from '../../registration/src/components/registration.vue';
-import MyHeader from '../../myheader/src/components/myheder.vue'
-import SideBar from '../../sidebar/src/components/sidebar.vue'
-import Dashboard from '../../dashboard/src/components/dashboard.vue'
-
+import MyHeader from '../../myheader/src/components/myheder.vue';
+import SideBar from '../../sidebar/src/components/sidebar.vue';
+import Dashboard from '../../dashboard/src/components/dashboard.vue';
 
 const url = 'http://localhost:8080/admission/';
 
-export default  Vue.extend({
+export default Vue.extend({
   name: 'App',
   props: {
     results: [],
   },
   components: {
-    Fio,
-    Vyatsu,
-    Login,
-    Registration,
+    // Fio,
+    // Vyatsu,
+    // Login,
+    // Registration,
     MyHeader,
     SideBar,
     Dashboard,
@@ -125,4 +123,3 @@ color: white;
 }
 } */
 </style>
-

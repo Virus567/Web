@@ -4,7 +4,6 @@
     <img src="../assets/logo.svg" alt="logo">
     <h1>PixelShop</h1>
   </div>
-
   <div class="list">
     <button class="list-btn">
       <img src="../assets/dashboard.svg" alt="dashboard">
@@ -33,11 +32,11 @@
      <button class="list-btn">
       <img src="../assets/Setting.svg" alt="settings">
       <h3>Settings</h3>
-    </button>  
+    </button>
     <button class="list-btn">
       <img src="../assets/logout.svg" alt="logout">
       <h3>Logout</h3>
-    </button>    
+    </button>
   </div>
 </div>
 </template>

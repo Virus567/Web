@@ -1,6 +1,6 @@
 <template>
 <div class ="header-block">
-  <h1>Overview</h1>  
+  <h1>Overview</h1>
   <input type="text" placeholder="Search…" class="input-block">
   <div class="navBar">
     <button class="NavBtn">

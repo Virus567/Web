@@ -8,6 +8,10 @@
     <h1 class="title">Регистрация</h1>
     <div>
       <div class="input-block">
+        <p>Email</p>
+        <input type="text" id="email" placeholder="Логин">
+      </div>
+      <div class="input-block">
         <p>Логин</p>
         <input type="text" id="reg_login" placeholder="Логин">
       </div>
@@ -17,7 +21,7 @@
       </div>
       <div class="input-block">
         <p>Повторите пароль</p>
-        <input type="password" placeholder="Повторите пароль">
+        <input type="password" id="reg_password2" placeholder="Повторите пароль">
       </div>
     </div>
     <div>
@@ -29,31 +33,50 @@
 
 <script lang="ts">
 import axios from 'axios';
+
 export default {
-  methods:{
-    IsValidLogin(){
+  methods: {
+    IsValidLogin() {
       const login :HTMLInputElement = document.getElementById('reg_login') as HTMLInputElement;
       const password :HTMLInputElement = document.getElementById('reg_password') as HTMLInputElement;
+      const password2 :HTMLInputElement = document.getElementById('reg_password2') as HTMLInputElement;
+      const email :HTMLInputElement = document.getElementById('email') as HTMLInputElement;
       const config = {
-      url: 'https://c09d3d8f-ad12-4bba-bc83-d39555f2e942.mock.pstmn.io/auth/check',
+        url: 'https://c09d3d8f-ad12-4bba-bc83-d39555f2e942.mock.pstmn.io/auth/check',
       };
       const data = {
-      login: login.value,
-      password: password.value,
+        login: login.value,
       };
-      axios.get(config.url+'?'+data.login+'&'+data.password)
-      .then((response) => {
-      console.log(response.data.isValid);
-      if (response.data.isValid) {
-        alert('Такой логин уже есть');
-      }else  alert('Логин свободен');
-      })
-      .catch((error) => {
-      console.log(error);
-      });
-    }
-  }  
-}
+      if (email.value === '') {
+        alert('Введите почту!');
+        return;
+      }
+      if (login.value === '') {
+        alert('Введите логин!');
+        return;
+      }
+      if (password.value === '') {
+        alert('Введите пароль!');
+        return;
+      }
+      if (password.value !== password2.value) {
+        alert('Пароли не совпадают!');
+        return;
+      }
+      axios.post(config.url, data, { headers: { 'x-mock-match-request-body': true } })
+        .then((response) => {
+          console.log(response.data.isValid);
+          if (response.data.isValid) {
+            alert('Логин занят');
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          alert('Логин свободен');
+        });
+    },
+  },
+};
 </script>
 <style scoped>
   .container{
@@ -118,6 +141,9 @@ export default {
     color: white;
   }
   @media (max-width:600px){
+  element.style {
+    display: block;
+  }
     .container{
       display: block;
     }

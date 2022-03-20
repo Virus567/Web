@@ -1,16 +1,17 @@
 <template>
   <div>
     <!-- <Fio lastName="Бессонов" firstName="Иван" middleName="Анатольевич"/>
-    <Vyatsu :results="results"/>  
+    <Vyatsu :results="results"/>
     <div class="buttons">
       <button v-on:click="toggleStyleLogin" class="login-btn">Войти</button>
       <button v-on:click="toggleStyleRegister" class="register-btn">Зарегестрироваться</button>
-    </div> 
+    </div>
     <Login class="login"/> -->
-    <Verification class="email"/>
+    <!-- <Verification class="email"/>
     <Registration class="register"/>
-    <Successfully class ="successfully"/>
+    <Successfully class ="successfully"/> -->
     <!-- <MyHeader/> -->
+    <MyTable/>
   </div>
 </template>
 <script lang='ts'>
@@ -22,53 +23,54 @@ import Login from '../../login/src/components/login.vue';
 import MyHeader from '../../header/src/components/Myheader.vue';
 import Registration from '../../registration/src/components/registration.vue';
 import Verification from '../../verification_email/src/components/verification_email.vue';
-import Successfully from '../../successfully/src/components/successfully.vue'
-
+import Successfully from '../../successfully/src/components/successfully.vue';
+import MyTable from '../../table/src/components/table.vue';
 
 const url = 'http://localhost:8080/admission/';
 
-export default  Vue.extend({
+export default Vue.extend({
   name: 'App',
   props: {
     results: [],
   },
   components: {
-    Fio,
-    Vyatsu,
-    Login,
-    Registration,
-    Verification,
-    MyHeader,
-    Successfully,
+    // Fio,
+    // Vyatsu,
+    // Login,
+    // Registration,
+    // Verification,
+    // MyHeader,
+    // Successfully,
+    MyTable,
   },
-  mounted() {
-    axios
-      .get(url)
-      .then((response) => {
-        console.log(response);
-        this.results = response.data;
-      })
-      .catch((error: any) => console.log(error));
-  },
+  // mounted() {
+  //   axios
+  //     .get(url)
+  //     .then((response) => {
+  //       console.log(response);
+  //       this.results = response.data;
+  //     })
+  //     .catch((error: any) => console.log(error));
+  // },
   methods: {
-    toggleStyleLogin() {
-      const login :HTMLDivElement = document.querySelector('.login');
-      const register :HTMLDivElement = document.querySelector('.email');
-      login.style.display = 'flex';
-      register.style.display = 'none';
-    },
-    toggleStyleRegister() {
-      const login :HTMLDivElement = document.querySelector('.login');
-      const register :HTMLDivElement = document.querySelector('.email');
-      login.style.display = 'none';
-      register.style.display = 'flex';
-    },
-    toggleStyleEmail() {
-      const login :HTMLDivElement = document.querySelector('.email');
-      const register :HTMLDivElement = document.querySelector('.register');
-      login.style.display = 'flex';
-      register.style.display = 'none';
-    },
+    // toggleStyleLogin() {
+    //   const login :HTMLDivElement = document.querySelector('.login');
+    //   const register :HTMLDivElement = document.querySelector('.email');
+    //   login.style.display = 'flex';
+    //   register.style.display = 'none';
+    // },
+    // toggleStyleRegister() {
+    //   const login :HTMLDivElement = document.querySelector('.login');
+    //   const register :HTMLDivElement = document.querySelector('.email');
+    //   login.style.display = 'none';
+    //   register.style.display = 'flex';
+    // },
+    // toggleStyleEmail() {
+    //   const login :HTMLDivElement = document.querySelector('.email');
+    //   const register :HTMLDivElement = document.querySelector('.register');
+    //   login.style.display = 'flex';
+    //   register.style.display = 'none';
+    // },
   },
 });
 </script>
@@ -120,4 +122,3 @@ color: white;
 }
 }
 </style>
-

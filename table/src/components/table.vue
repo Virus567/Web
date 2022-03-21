@@ -11,6 +11,22 @@
       <td>{{ item.email }}</td>
     </tr>
   </table>
+  <div id="openModal" class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Подробная информация</h3>
+        <a v-on:click="CloseModal" class="close">×</a>
+      </div>
+      <div class="modal-body">
+        <p>ID: {{element.id}}</p>
+        <p>ФИО: {{element.fio}}</p>
+        <p>Возраст: {{element.age}}</p>
+        <p>Email: {{element.email}}</p>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 </template>
 
@@ -46,12 +62,19 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.element = response.data;
-          const str = 'ID: ' + (this.element.id) + '\nФИО: ' + (this.element.fio) + '\nВозраст: ' + (this.element.age) + '\nEmail: ' + (this.element.email);
-          alert(str);
+          const modal :HTMLDivElement = document.querySelector('#openModal');
+          modal.style.opacity = '1';
+          modal.style.pointerEvents = 'auto';
+          modal.style.overflowY = 'auto';
         })
         .catch((error) => {
           console.log(error);
         });
+    },
+    CloseModal() {
+      const modal :HTMLDivElement = document.querySelector('#openModal');
+      modal.style.opacity = '0';
+      modal.style.pointerEvents = 'none';
     },
   },
 };
@@ -61,10 +84,11 @@ export default {
     width: 100%;
     margin: 0 auto;
     display: block;
-    justify-content: center;
+    margin: 0 auto;
+    text-align: center;
   }
   .table_block {
-margin: 0px auto;
+margin: 20px auto;
 width: 60%;
 }
 
@@ -83,5 +107,104 @@ text-align: left;
 background-color: #EEEEEE;
 transition: all 0.5s;
 }
-
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1050;
+    opacity: 0;
+    -webkit-transition: opacity 200ms ease-in;
+    -moz-transition: opacity 200ms ease-in;
+    transition: opacity 200ms ease-in;
+    pointer-events: none;
+    margin: 0;
+    padding: 0;
+}
+.modal:target {
+    opacity: 1;
+    pointer-events: auto;
+    overflow-y: auto;
+}
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10px;
+}
+@media (min-width: 576px) {
+  .modal-dialog {
+      max-width: 500px;
+      margin: 30px auto;
+  }
+}
+.modal-content {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
+    outline: 0;
+}
+@media (min-width: 768px) {
+  .modal-content {
+      -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+      box-shadow: 0 5px 15px rgba(0,0,0,.5);
+  }
+}
+.modal-header {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #eceeef;
+}
+.modal-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1.5;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+.close {
+    float: right;
+    font-family: sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+    text-decoration: none;
+}
+.close:focus, .close:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: .75;
+}
+.modal-body {
+  margin-left: 10px;
+  text-align: left;
+}
 </style>

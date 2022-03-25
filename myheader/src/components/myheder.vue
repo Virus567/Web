@@ -68,4 +68,16 @@ export default {
     border: none;
     cursor: pointer;
   }
+   @media (max-width: 420px){
+     h1{
+       display: none;
+     }
+     .input-block{
+       width: 100px;
+       height: 40px;
+     }
+     .header-block{
+       margin:0;
+     }
+  }
 </style>

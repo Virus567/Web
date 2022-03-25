@@ -332,5 +332,46 @@ export default {
     font-weight: 600;
     font-size: 14px;
   }
-
+  @media (max-width: 420px){
+    .banners{
+      display: block;
+      margin-left: -20%;
+    }
+    .w-30{
+      width: 100%;
+    }
+    .w-70{
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    .btns{
+    grid-template-columns: repeat(2, 48%);
+    gap: 0 5px;
+    }
+    .btns .info-btn:nth-child(1), .btns .info-btn:nth-child(2){
+     margin-bottom: 10px;
+    }
+    .options{
+    grid-template-columns: repeat(2, 74%);
+    gap: 0 5px;
+    }
+  .tovar{
+    display: block;
+    max-height: 100%;
+  }
+  .tovar-info{
+    width: 100%;
+  }
+  .info-phone{
+    justify-content: space-between;
+    text-align: center;
+    border: none;
+    width: 100%;
+    margin: 0;
+    padding: 0 20px 0 20px ;
+    }
+  .info-phone img{
+    padding: 0 0 0 10px;
+  }
+  }
 </style>

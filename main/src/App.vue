@@ -1,40 +1,27 @@
 <template>
   <div>
-    <CustomButton/>
-    <Verification class="email"/>
-    <Registration class="register"/>
-    <Successfully class ="successfully"/>
+    <div id="mainContainer">
+      <Verification class="email"/>
+      <Registration class="register"/>
+      <Successfully class ="successfully"/>
+    </div>
+    <CustomButton class="btnStart"/>
   </div>
 </template>
 <script lang='ts'>
 import Vue from 'vue';
-import axios from 'axios';
 import Registration from '../../registration/src/components/registration.vue';
 import Verification from '../../verification_email/src/components/verification_email.vue';
 import Successfully from '../../successfully/src/components/successfully.vue';
 import CustomButton from '../../custom_button/src/components/custom_button.vue';
 
-const url = 'http://localhost:8080/admission/';
-
 export default Vue.extend({
   name: 'App',
-  props: {
-    results: [],
-  },
   components: {
     Registration,
     Verification,
     Successfully,
     CustomButton,
-  },
-  mounted() {
-    axios
-      .get(url)
-      .then((response) => {
-        console.log(response);
-        this.results = response.data;
-      })
-      .catch((error: any) => console.log(error));
   },
   methods: {
     toggleStyleLogin() {
@@ -87,6 +74,24 @@ margin-left: 10px;
 padding: 10px 55px;
 color: white;
 }
+#mainContainer{
+    pointer-events: none;
+    position: absolute;
+    width:100%;
+    height:100%;
+    background:#000;
+    opacity:0.5;
+  }
+.btnStart
+  {
+    position: fixed;
+    z-index: 100;
+    margin-top: 0%;
+    margin-left: 25%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    backdrop-filter: blur(4rem);
+  }
 @media (max-width:600px){
   .buttons {
   display: block;

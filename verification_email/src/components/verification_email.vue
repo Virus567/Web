@@ -24,19 +24,20 @@
 
 <script lang="ts">
 export default {
-   methods: {
-      SwapReg() {
-            const emailBlock :HTMLDivElement = document.querySelector('.email');
-            const registrationBlock :HTMLDivElement = document.querySelector('.register');
-            emailBlock.style.display = 'none';
-            registrationBlock.style.display = 'flex';
-            const enterEmail = (document.querySelector('.email_input') as HTMLInputElement).value;
-            const regEmail :HTMLInputElement = document.querySelector('.reg_email');
-          regEmail.value = enterEmail;
-      }
-   }
+  methods: {
+    SwapReg() {
+      const emailBlock :HTMLDivElement = document.querySelector('.email');
+      const registrationBlock :HTMLDivElement = document.querySelector('.register');
+      emailBlock.style.display = 'none';
+      registrationBlock.style.display = 'flex';
+      const enterEmail = (document.querySelector('.email_input') as HTMLInputElement).value;
+      const regEmail :HTMLInputElement = document.querySelector('.reg_email');
+      regEmail.value = enterEmail;
+    },
+  },
 };
 </script>
+
 <style scoped>
   .container{
     width: 100%;

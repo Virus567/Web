@@ -6,47 +6,76 @@
   </div>
   <div class="registration_block">
     <h1 class="title">Регистрация</h1>
-    <div class="input_desctop">
+    <div>
       <div class="input-block">
         <p>Email</p>
-        <input type="text" readonly class="reg_email">
+        <input type="text" id="email" placeholder="Логин">
       </div>
       <div class="input-block">
         <p>Логин</p>
-        <input type="text">
+        <input type="text" id="reg_login" placeholder="Логин">
       </div>
       <div class="input-block">
         <p>Пароль</p>
-        <input type="password">
+        <input type="password" id="reg_password"  placeholder="Пароль">
       </div>
       <div class="input-block">
         <p>Повторите пароль</p>
-        <input type="password">
+        <input type="password" id="reg_password2" placeholder="Повторите пароль">
       </div>
     </div>
-    <div class="input-mobil">
-      <input type="text" placeholder="Email" readonly class="reg_email">
-      <input type="text" placeholder="Логин">
-      <input type="password" placeholder="Пароль">
-      <input type="password" placeholder="Повторите пароль">
-    </div>
     <div>
-      <button type="button" class="Enter-btn" v-on:click="EndReg">Зарегестрироваться</button>
+      <button type="button" class="Enter-btn" v-on:click="IsValidLogin">Зарегестрироваться</button>
     </div>
   </div>
 </div>
 </template>
 
 <script lang="ts">
+import axios from 'axios';
+
 export default {
   methods: {
-    EndReg() {
-      const emailBlock :HTMLDivElement = document.querySelector('.email');
-      const successfullyBlock :HTMLDivElement = document.querySelector('.successfully');
-      const registrationBlock :HTMLDivElement = document.querySelector('.register');
-      emailBlock.style.display = 'none';
-      registrationBlock.style.display = 'none';
-      successfullyBlock.style.display = 'flex';
+    IsValidLogin() {
+      const login :HTMLInputElement = document.getElementById('reg_login') as HTMLInputElement;
+      const password :HTMLInputElement = document.getElementById('reg_password') as HTMLInputElement;
+      const password2 :HTMLInputElement = document.getElementById('reg_password2') as HTMLInputElement;
+      const email :HTMLInputElement = document.getElementById('email') as HTMLInputElement;
+      const config = {
+        url: 'api/auth/check',
+      };
+      const data = {
+        login: login.value,
+        pass: password.value,
+      };
+      if (email.value === '') {
+        alert('Введите почту!');
+        return;
+      }
+      if (login.value === '') {
+        alert('Введите логин!');
+        return;
+      }
+      if (password.value === '') {
+        alert('Введите пароль!');
+        return;
+      }
+      if (password.value !== password2.value) {
+        alert('Пароли не совпадают!');
+        return;
+      }
+      axios.post(config.url, data)
+        .then((response) => {
+          console.log(response.data.IsValid);
+          if (!response.data.IsValid) {
+            alert('Логин занят');
+          } else {
+            alert('Логин свободен');
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };
@@ -110,7 +139,13 @@ export default {
     text-decoration: none;
     padding: 2px 1px;
     }
+  .input-block input::placeholder{
+    color: white;
+  }
   @media (max-width:600px){
+  element.style {
+    display: block;
+  }
     .container{
       display: block;
     }
@@ -135,6 +170,12 @@ export default {
     font-size: 20px;
     text-decoration: none;
     padding: 2px 1px;
+    }
+     .input-block input::placeholder{
+      color: grey;
+    }
+    .input-block p{
+      display: none;
     }
   }
     @media (max-width:260px){

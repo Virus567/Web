@@ -6,35 +6,57 @@
   </div>
   <div class="registration_block">
     <h1 class="title">Авторизация</h1>
-    <div class="input_desctop">
+    <div>
       <div class="input-block">
         <p>Логин</p>
-        <input type="text">
+        <input type="text" id="login"  placeholder="Логин">
       </div>
       <div class="input-block">
         <p>Пароль</p>
-        <input type="password">
+        <input type="password" id="password" placeholder="Пароль">
       </div>
-    </div>
-    <div class="input-mobil">
-      <input type="text" placeholder="Логин">
-      <input type="password" placeholder="Пароль">
     </div>
     <div class="save">
       <input type="checkbox">
       <h3 class="save-text">Сохранить</h3>
     </div>
     <div>
-      <button type="button" class="Enter-btn">Авторизоваться</button>
+      <button type="button" class="Enter-btn" v-on:click="GetLogin">Авторизоваться</button>
     </div>
   </div>
 </div>
 </template>
 
 <script lang="ts">
+import axios from 'axios';
+
 export default {
+  methods: {
+    GetLogin() {
+      const login :HTMLInputElement = document.getElementById('login') as HTMLInputElement;
+      const password :HTMLInputElement = document.getElementById('password') as HTMLInputElement;
+      const config = {
+        url: 'api/auth/login',
+      };
+      const data = {
+        login: login.value,
+        pass: password.value,
+      };
+      axios.post(config.url, data, { headers: { 'x-mock-match-request-body': true } })
+        .then((response) => {
+          console.log(response.data.completed);
+          if (response.data.completed) {
+            alert('Логин и пароль верные');
+          } else alert('Введены неверные данные');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
 };
 </script>
+
 <style scoped>
   .container{
     width: 100%;
@@ -81,10 +103,6 @@ export default {
     color: white;
     cursor: pointer;
   }
-  .input-mobil{
-    display: none;
-    flex-direction: column;
-  }
   .input-block p{
       margin-bottom: 0px;
   }
@@ -92,6 +110,9 @@ export default {
     font-size: 20px;
     text-decoration: none;
     padding: 2px 1px;
+    }
+    .input-block input::placeholder{
+      color: white;
     }
   @media (max-width:600px){
     .container{
@@ -105,24 +126,16 @@ export default {
       margin: 0 auto;
       height: 100px;
     }
-    .input_desctop{
+     .input-block input::placeholder{
+      color: grey;
+    }
+    .input-block p{
       display: none;
-    }
-    .input-mobil{
-      display: flex;
-    }
-    .input-mobil input{
-      margin-top: 10px;
-    }
-    .input-mobil input{
-    font-size: 20px;
-    text-decoration: none;
-    padding: 2px 1px;
     }
   }
     @media (max-width:260px){
-      .input-mobil input{
-        width: 180px;
+    .input-block input::placeholder{
+      color: grey;
     }
     }
 </style>

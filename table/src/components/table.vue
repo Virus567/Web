@@ -33,6 +33,10 @@
 <script lang="ts">
 import axios from 'axios';
 
+const headers = {
+  'Content-Type': 'application/json',
+};
+
 export default {
   data: () => ({
     loading: true,
@@ -42,9 +46,9 @@ export default {
   methods: {
     GetList() {
       const config = {
-        url: 'https://80b603bf-d22f-4c72-9130-52004b6307c5.mock.pstmn.io',
+        url: 'api/getstudent',
       };
-      axios.get(config.url)
+      axios.get(config.url, { headers })
         .then((response) => {
           console.log(response.data);
           this.list = response.data;
@@ -56,9 +60,9 @@ export default {
     },
     FindById(i) {
       const config = {
-        url: 'https://80b603bf-d22f-4c72-9130-52004b6307c5.mock.pstmn.io/',
+        url: 'api/getstudent?id=',
       };
-      axios.get(config.url + i)
+      axios.get(config.url + i, { headers })
         .then((response) => {
           console.log(response.data);
           this.element = response.data;

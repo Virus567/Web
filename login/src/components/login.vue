@@ -29,32 +29,32 @@
 
 <script lang="ts">
 import axios from 'axios';
+
 export default {
-  methods:{
-    GetLogin(){
+  methods: {
+    GetLogin() {
       const login :HTMLInputElement = document.getElementById('login') as HTMLInputElement;
       const password :HTMLInputElement = document.getElementById('password') as HTMLInputElement;
       const config = {
-      url: 'https://c09d3d8f-ad12-4bba-bc83-d39555f2e942.mock.pstmn.io/auth/login',
+        url: 'api/auth/login',
       };
       const data = {
-      login: login.value,
-      password: password.value,
+        login: login.value,
+        pass: password.value,
       };
       axios.post(config.url, data, { headers: { 'x-mock-match-request-body': true } })
-      .then((response) => {
-      console.log(response.data.completed);
-      if (response.data.completed) {
-      alert('Логин и пароль верные');
-      }
-      })
-      .catch((error) => {
-      console.log(error);
-      alert('Введены неверные данные');
-      });
-    }
-  }  
-}
+        .then((response) => {
+          console.log(response.data.completed);
+          if (response.data.completed) {
+            alert('Логин и пароль верные');
+          } else alert('Введены неверные данные');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+};
 </script>
 
 <style scoped>

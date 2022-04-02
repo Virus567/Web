@@ -42,10 +42,11 @@ export default {
       const password2 :HTMLInputElement = document.getElementById('reg_password2') as HTMLInputElement;
       const email :HTMLInputElement = document.getElementById('email') as HTMLInputElement;
       const config = {
-        url: 'https://c09d3d8f-ad12-4bba-bc83-d39555f2e942.mock.pstmn.io/auth/check',
+        url: 'api/auth/check',
       };
       const data = {
         login: login.value,
+        pass: password.value,
       };
       if (email.value === '') {
         alert('Введите почту!');
@@ -63,16 +64,17 @@ export default {
         alert('Пароли не совпадают!');
         return;
       }
-      axios.post(config.url, data, { headers: { 'x-mock-match-request-body': true } })
+      axios.post(config.url, data)
         .then((response) => {
-          console.log(response.data.isValid);
-          if (response.data.isValid) {
+          console.log(response.data.IsValid);
+          if (!response.data.IsValid) {
             alert('Логин занят');
+          } else {
+            alert('Логин свободен');
           }
         })
         .catch((error) => {
           console.log(error);
-          alert('Логин свободен');
         });
     },
   },

@@ -100,7 +100,7 @@
 <p align=center><img src="./img/noFreeLogin.jpg" alt="no free login"></p>
 <p align = center>Рисунок 5 – Неуникальный логин
 
-<p align=center><img src="./img/tablestud.jpg" alt="table"></p>
+<p align=center><img src="./img/tableStud.jpg" alt="table"></p>
 <p align = center>Рисунок 6 – Таблица студентов
 
 <p align=center><img src="./img/oneStud.jpg" alt="one stud"></p>

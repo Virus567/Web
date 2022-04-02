@@ -18,7 +18,7 @@ import Vyatsu from '../../vyatsu/src/components/Vyatsu.vue';
 import Login from '../../login/src/components/login.vue';
 import Registration from '../../registration/src/components/registration.vue';
 
-const url = 'http://localhost:8080/admission/';
+const url = '/vyatsu/admission/';
 
 export default Vue.extend({
   name: 'App',

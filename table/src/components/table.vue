@@ -3,12 +3,20 @@
   <button type="button" v-on:click="GetList">Сформировать список</button>
   <loader v-if="loading"/>
   <table v-else class="table_block">
-    <tr><th>id</th><th>ФИО</th><th>Возраст</th><th>Почта</th></tr>
+    <tr><th>gender</th><th>id</th><th>ФИО</th><th>Возраст</th><th>Почта</th></tr>
     <tr v-on:click="FindById(item.id)" v-for="(item) in list" :key="item.id">
+      <td>
+        <font-awesome-icon icon="mars" v-if="item.gender == 1"/>
+        <font-awesome-icon icon="venus" v-else/>
+      </td>
       <td>{{ item.id }}</td>
       <td>{{ item.fio }}</td>
       <td>{{ item.age }}</td>
-      <td>{{ item.email }}</td>
+      <td>
+          {{ item.email }}
+          <font-awesome-icon icon="check" class="verif" v-if="item.isVerif"/>
+          <font-awesome-icon icon="ban" class="verif" v-else/>
+      </td>
     </tr>
   </table>
   <div id="openModal" class="modal">
@@ -32,17 +40,26 @@
 
 <script lang="ts">
 import axios from 'axios';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faMars, faVenus, faCheck, faBan,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 const headers = {
   'Content-Type': 'application/json',
 };
 
+library.add(faMars, faVenus, faCheck, faBan);
 export default {
   data: () => ({
     loading: true,
     list: [],
     element: {},
   }),
+  components: {
+    FontAwesomeIcon,
+  },
   methods: {
     GetList() {
       const config = {
@@ -94,6 +111,10 @@ export default {
   .table_block {
 margin: 20px auto;
 width: 60%;
+}
+
+.verif{
+  margin-bottom: 10px;
 }
 
 .table_block tr {

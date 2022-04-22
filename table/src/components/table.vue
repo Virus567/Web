@@ -114,7 +114,7 @@ width: 60%;
 }
 
 .verif{
-  margin-bottom: 10px;
+  margin-bottom: 50px;
 }
 
 .table_block tr {

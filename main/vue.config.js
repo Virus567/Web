@@ -1,20 +1,20 @@
 module.exports = {
   devServer: {
-    proxy:{
-      '/vyatsu':{
+    proxy: {
+      '/vyatsu': {
         target: 'https://new.vyatsu.ru/',
         changeOrigin: true,
         pathRewrite: {
-          '^/vyatsu':''
-        }
+          '^/vyatsu': '',
+        },
       },
-      '/api':{
+      '/api': {
         target: 'http://localhost:8082/',
         changeOrigin: true,
         pathRewrite: {
-          '^/api':''
-        }
-      }
-    }
+          '^/api': '',
+        },
+      },
+    },
   },
 };
